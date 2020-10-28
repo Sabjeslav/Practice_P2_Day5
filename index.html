@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Local Storage</title>
+</head>
+<body>
+<div id="app">
+    <template v-if="theme === ''">
+        <link rel="stylesheet" href="./styles/dark_theme.css">
+        <div class="header">
+            <div class="menu">
+                <span class="label">Меню 1</span>
+            </div>
+            <div class="divider"></div>
+            <div class="menu">
+                <span class="label">Меню 2</span>
+            </div>
+            <div class="divider"></div>
+            <div class="menu">
+                <span class="label">Меню 3</span>
+            </div>
+            <div class="divider"></div>
+            <div class="menu">
+                <span class="label">Меню 4</span>
+            </div>
+            <div class="divider"></div>
+            <div class="">
+                <div class="container">
+                    <a href="#" class="btn" v-on:click="setLight">Change Theme</a>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <template v-else>
+        <link rel="stylesheet" href="./styles/light_theme.css">
+        <div class="header">
+            <div class="menu">
+                <span class="label">Меню 1</span>
+            </div>
+            <div class="divider"></div>
+            <div class="menu">
+                <span class="label">Меню 2</span>
+            </div>
+            <div class="divider"></div>
+            <div class="menu">
+                <span class="label">Меню 3</span>
+            </div>
+            <div class="divider"></div>
+            <div class="menu">
+                <span class="label">Меню 4</span>
+            </div>
+            <div class="divider"></div>
+            <div class="">
+                <div class="container">
+                    <a href="#" class="btn" v-on:click="setDark">Change Theme</a>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <div class="middleContainer">
+        <div class="content"> </div>
+    </div>
+
+    <div class="footer">
+        <div class="menu">
+            <span class="label">Меню 1</span>
+        </div>
+        <div class="divider"></div>
+        <div class="menu">
+            <span class="label">Меню 2</span>
+        </div>
+        <div class="divider"></div>
+        <div class="menu">
+            <span class="label">Меню 3</span>
+        </div>
+        <div class="divider"></div>
+        <div class="menu">
+            <span class="label">Меню 4</span>
+        </div>
+        <div class="divider"></div>
+        <div class="menu">
+            <span class="label">Меню 5</span>
+        </div>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    var app = new Vue({
+        el: '#app',
+        data:{
+            theme: '',
+        },
+        mounted:function(){
+            let styleStorage = localStorage.getItem('isDark');
+            if(styleStorage == '') this.theme = ''
+            else this.theme = 'true'
+        },
+        methods:{
+            setLight:function(){
+                this.theme = "true";
+                if (this.theme == 'true') localStorage.setItem('isDark','true')
+            },
+            setDark:function(){
+                this.theme = "";
+                if (this.theme == '') localStorage.setItem('isDark','')
+            }
+        }
+    })
+</script>
+</body>
+</html>
